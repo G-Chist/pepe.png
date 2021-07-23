@@ -346,7 +346,7 @@ async def random(ctx):
         saverandom()
         await ctx.send(file = discord.File('cum.png'))
 
-    except ZeroDivisionError:
+    except:
         await ctx.send("**Unexpected bot error.**")
 
 @bot.command()
