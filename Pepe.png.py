@@ -8,9 +8,9 @@ import requests
 from random import *
 
 settings = {
-    'token': 'ODYzNjAyNTE5ODc5OTc0OTQy.YOpShQ.CLO7Kr6yfwuw-RutZMKEetfh-20',
+    'token': '000000',
     'bot': 'Pepe.png',
-    'id': 863602519879974942,
+    'id': 00000000,
     'prefix': '|'
 }
 client = discord.Client()
