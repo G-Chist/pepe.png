@@ -8,15 +8,17 @@ import requests
 from random import *
 
 settings = {
-    'token': 'token',
+    'token': 'ODYzNjAyNTE5ODc5OTc0OTQy.YOpShQ.CLO7Kr6yfwuw-RutZMKEetfh-20',
     'bot': 'Pepe.png',
-    'id': 0000000,
+    'id': 863602519879974942,
     'prefix': '|'
 }
 client = discord.Client()
 client.intents = all
 bot = commands.Bot(command_prefix = settings['prefix'])
 bot.remove_command('help')
+
+memecounter = 0
 
 def rangevar(var, low, high):
     if var < low:
@@ -36,15 +38,17 @@ def search(str, symb):
 
 def saverandom():
     response = requests.get('http://lorempixel.com/' + str(randint(100, 1500)) + '/' + str(randint(100, 1500)) + '/')
-    with open('cum.png', 'wb') as f:
+    with open(str(memecounter) + '.png', 'wb') as f:
         f.write(response.content)
 
 async def saveimg(ctx):
+    global memecounter
+    memecounter = memecounter + 1 if memecounter < 15 else 0
     image = ctx.message.attachments[0]
-    await image.save('cum.png')
+    await image.save(str(memecounter) + '.png')
 
 def bwf():
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     draw = ImageDraw.Draw(image)
     width = image.size[0]
     height = image.size[1]
@@ -56,10 +60,10 @@ def bwf():
             b = pix[x, y][2]
             sr = (r + g + b) // 3
             draw.point((x, y), (sr, sr, sr))
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
 
 def invertf():
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     draw = ImageDraw.Draw(image)
     width = image.size[0]
     height = image.size[1]
@@ -70,26 +74,26 @@ def invertf():
             g = pix[x, y][1]
             b = pix[x, y][2]
             draw.point((x, y), (255 - r, 255 - g, 255 - b))
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
 
 def brightf():
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     enhancer = ImageEnhance.Brightness(image)
     im_output = enhancer.enhance(1.4)
-    im_output.save('cum.png')
+    im_output.save(str(memecounter) + '.png')
 
 def darkf():
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     enhancer = ImageEnhance.Brightness(image)
     im_output = enhancer.enhance(0.6)
-    im_output.save('cum.png')
+    im_output.save(str(memecounter) + '.png')
 
 async def noisef(ctx):
     if len(ctx.message.content[7::]) > 0:
         n = float(ctx.message.content[7::])
     else:
         n = 50
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     draw = ImageDraw.Draw(image)
     width = image.size[0]
     height = image.size[1]
@@ -100,20 +104,20 @@ async def noisef(ctx):
             g = pix[x, y][1]
             b = pix[x, y][2]
             draw.point((x, y), (rangevar(r + randint(-n, n), 0, 255), rangevar(g + randint(-n, n), 0, 255), rangevar(b + randint(-n, n), 0, 255)))
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
 
 async def contrastf(ctx):
     if len(ctx.message.content[10::]) > 0:
         n = float(ctx.message.content[10::])
     else:
         n = 1.5
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     enhancer = ImageEnhance.Contrast(image)
     image = enhancer.enhance(n)
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
 
 def deepfryf():
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     enhancer = ImageEnhance.Contrast(image)
     image = enhancer.enhance(1.8)
     draw = ImageDraw.Draw(image)
@@ -128,7 +132,7 @@ def deepfryf():
             draw.point((x, y), (rangevar(r + randint(-100, 100), 0, 255), rangevar(g + randint(-100, 100), 0, 255), rangevar(b + randint(-100, 100), 0, 255)))
     enhancer = ImageEnhance.Brightness(image)
     image = enhancer.enhance(1.4)
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
 
 async def memef(ctx):
     if len(ctx.message.content[6::]) > 0:
@@ -141,7 +145,7 @@ async def memef(ctx):
     else:
         toptext = " "
         bottomtext = " "
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     largertext = len(toptext) if len(toptext) > len(bottomtext) else len (bottomtext)
     width, height = image.size
     font = ImageFont.truetype("impact.ttf", size = int(round(110 * (width / 1100) * (20 / largertext if largertext > 18 else 1), 0)))
@@ -162,7 +166,7 @@ async def memef(ctx):
     draw.text((x2 - 1, y2 + 1), str(bottomtext), font = font, fill = "black")
     draw.text((x2 + 1, y2 + 1), str(bottomtext), font = font, fill = "black")
     draw.text((x2, y2), str(bottomtext), font = font)
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
 
 async def dfmemef(ctx):
     if len(ctx.message.content[8::]) > 0:
@@ -175,7 +179,7 @@ async def dfmemef(ctx):
     else:
         toptext = " "
         bottomtext = " "
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     largertext = len(toptext) if len(toptext) > len(bottomtext) else len(bottomtext)
     width, height = image.size
     font = ImageFont.truetype("impact.ttf", size = int(round(110 * (width / 1100) * (20 / largertext if largertext > 18 else 1), 0)))
@@ -196,7 +200,7 @@ async def dfmemef(ctx):
     draw.text((x2 - 1, y2 + 1), str(bottomtext), font = font, fill = "black")
     draw.text((x2 + 1, y2 + 1), str(bottomtext), font = font, fill = "black")
     draw.text((x2, y2), str(bottomtext), font = font)
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
     deepfryf()
 
 async def lobsterf(ctx):
@@ -204,7 +208,7 @@ async def lobsterf(ctx):
         bottomtext = str(ctx.message.content[8::])
     else:
         bottomtext = " "
-    image = Image.open('cum.png')
+    image = Image.open(str(memecounter) + '.png')
     width, height = image.size
     font = ImageFont.truetype("lobster.ttf", size = int(round(100 * (width / 1100), 0)))
     draw = ImageDraw.Draw(image)
@@ -212,10 +216,10 @@ async def lobsterf(ctx):
     x2 = (width - w2)/2
     y2 = height - font.size - 4 * round(height/120, 0)
     draw.text((x2, y2), str(bottomtext), font = font)
-    image.save('cum.png')
+    image.save(str(memecounter) + '.png')
 
 async def sendimg(ctx):
-    await ctx.send(file = discord.File('cum.png'))
+    await ctx.send(file = discord.File(str(memecounter) + '.png'))
 
 #BOT COMMANDS
 
@@ -314,7 +318,7 @@ async def meme(ctx):
         await memef(ctx)
         await sendimg(ctx)
 
-    except:
+    except ZeroDivisionError:
         await ctx.send("**Unexpected bot error.**")
 
 @bot.command()
@@ -344,7 +348,7 @@ async def random(ctx):
 
     try:
         saverandom()
-        await ctx.send(file = discord.File('cum.png'))
+        await ctx.send(file = discord.File(str(memecounter) + '.png'))
 
     except:
         await ctx.send("**Unexpected bot error.**")
